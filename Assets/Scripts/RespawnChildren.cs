@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RespawnChildren : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabsToSpawn = new();
     [SerializeField] private ObjectSpawnManager objectSpawnManager;
+    public UnityEvent OnSpawned;
     
     void Update()
     {
@@ -22,5 +24,6 @@ public class RespawnChildren : MonoBehaviour
         var instance = Instantiate(randomPrefab, transform.position, quaternion.identity);
         instance.transform.parent = gameObject.transform;
         instance.SetActive(false);
+        OnSpawned.Invoke();
     }
 }
