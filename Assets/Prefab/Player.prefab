@@ -473,6 +473,8 @@ MonoBehaviour:
   _dropForwardForce: 4
   _dropUpwardForce: 4
   rotateMultiplayer: 1
+  outlineThickness: 0.03
+  _material: {fileID: 0}
   _pickUp: 0
 --- !u!114 &2096126328018980617
 MonoBehaviour:

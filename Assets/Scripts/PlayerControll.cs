@@ -2,6 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerControll : MonoBehaviour
     private Vector2 _moveInput, _lookMouseInput, _lookGamepadInput;
     private Vector3 rotationTarget, aimDirection , movement;
     private Quaternion rotation;
-    private RaycastHit _hit;
+    public RaycastHit _hit;
     private float _jumpVelocity;
     private bool _gamepad;
 
@@ -79,6 +80,14 @@ public class PlayerControll : MonoBehaviour
     }
     private void Update()
     {
+        if(Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange, _pickableLayer))
+        {
+            _pickUpSystem.OutlineObject(_hit);
+        }
+        else
+        {
+            _pickUpSystem.RemoveOutlineObject();
+        }
         if(!_gamepad)
         {
             RaycastHit hit;
@@ -133,7 +142,6 @@ public class PlayerControll : MonoBehaviour
 
         }
     }
-
     private void Jump()
     {
         if (cc.isGrounded)
@@ -141,7 +149,6 @@ public class PlayerControll : MonoBehaviour
             _jumpVelocity = _jumpHeight;
         }   
     }
-
     IEnumerator WaitToPickUp()
     {
         yield return new WaitForSeconds(0.45f);
