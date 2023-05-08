@@ -22,7 +22,7 @@ public class RespawnChildren : MonoBehaviour
     private void SpawnRandomPrefab()
     {
         var randomObject = objectToSpawn.OrderBy(_ => Guid.NewGuid()).First();
-        var instance = Instantiate(randomObject.prefab, transform.position, quaternion.identity);
+        var instance = Instantiate(randomObject.prefabWhole, transform.position, quaternion.identity);
         instance.GameObject().transform.parent = gameObject.transform;
         instance.GameObject().SetActive(false);
         OnSpawned.Invoke();
