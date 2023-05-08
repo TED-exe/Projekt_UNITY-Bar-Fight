@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3997850120150107362}
   - component: {fileID: 6748578457875570985}
   - component: {fileID: 5550084160205723633}
+  - component: {fileID: -6376873060974841134}
   m_Layer: 3
   m_Name: CupWhole
   m_TagString: Untagged
@@ -90,6 +91,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.63
   m_Center: {x: 0, y: 0.3685345, z: 0}
+--- !u!114 &-6376873060974841134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551436559783479004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56650044ed631f4abf8549312e6f853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5620439935808108021
 PrefabInstance:
   m_ObjectHideFlags: 0

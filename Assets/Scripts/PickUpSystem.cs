@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpSystem : MonoBehaviour
@@ -7,6 +8,8 @@ public class PickUpSystem : MonoBehaviour
     [SerializeField] private Transform _itemHolder;
     [Min(1)]
     [SerializeField] private float _dropForwardForce, _dropUpwardForce, rotateMultiplayer;
+
+    private const int THROWED_LAYER_NUMBER = 7;
 
     private Rigidbody _objectInHandRb;
     private GameObject _objectInHand;
@@ -39,6 +42,7 @@ public class PickUpSystem : MonoBehaviour
     }
     public void Drop()
     {
+        _objectInHand.GameObject().layer = THROWED_LAYER_NUMBER;
         _objectInHand.transform.SetParent(null);
         _objectInHandRb.isKinematic = false;
         _objectInHandRb.AddForce(transform.forward * _dropForwardForce, ForceMode.Impulse);
