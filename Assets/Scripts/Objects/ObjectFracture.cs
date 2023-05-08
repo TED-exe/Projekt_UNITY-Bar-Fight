@@ -6,7 +6,6 @@ public class ObjectFracture : MonoBehaviour
 {
     [SerializeField] private SO_Objects scriptableObject;
     [SerializeField] private float breakForce = 2f;
-    public int timeToDestroyFragments = 2;
 
     public void FractureObject()
     {
