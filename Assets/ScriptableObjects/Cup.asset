@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148d1c5a91031734088f7892bd153bce, type: 3}
   m_Name: Cup
   m_EditorClassIdentifier: 
-  prefab: {fileID: 721918284125009202, guid: 0973b9cbb0f6ed045989b7501067c95a, type: 3}
+  prefabWhole: {fileID: 721918284125009202, guid: 0973b9cbb0f6ed045989b7501067c95a,
+    type: 3}
+  prefabFractured: {fileID: 6825807144882509716, guid: a48723be778f68e4eac0471146dcd33e,
+    type: 3}
