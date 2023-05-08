@@ -103,6 +103,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56650044ed631f4abf8549312e6f853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBeforeDestroy: 2
+  onPlayerHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2873913615185033122, guid: 52fd9b615b7b8a048be7858232a586bf,
+          type: 3}
+        m_TargetAssemblyTypeName: PlayerCollision, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &7057447433645062864
 PrefabInstance:
   m_ObjectHideFlags: 0
