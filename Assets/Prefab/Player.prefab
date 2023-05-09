@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: -6583182698627229334}
   - component: {fileID: 3816539192200478326}
   - component: {fileID: 2096126328018980617}
-  - component: {fileID: 2873913615185033122}
+  - component: {fileID: -3466161927221452629}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -474,6 +474,8 @@ MonoBehaviour:
   _dropForwardForce: 4
   _dropUpwardForce: 4
   rotateMultiplayer: 1
+  outlineThickness: 2
+  hightLightPower: 0
   _pickUp: 0
 --- !u!114 &2096126328018980617
 MonoBehaviour:
@@ -499,7 +501,7 @@ MonoBehaviour:
   gravityMultiplier: 1
   _pickUpRange: 3
   _raycastCaster: {fileID: 1932449591918906829}
---- !u!114 &2873913615185033122
+--- !u!114 &-3466161927221452629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,9 +510,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2350417982065529107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a4d88566267de45bde316a9fb19486, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a7fb0a58b843241a5c9547b7c850dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEventToSubscribe: {fileID: 11400000, guid: 0bb2f4acb72f6734db7e0f5216f5c09a,
+    type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3816539192200478326}
+        m_TargetAssemblyTypeName: PickUpSystem, Assembly-CSharp
+        m_MethodName: RemoveOutlineObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5762432340100865065
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerControll : MonoBehaviour
     private Vector2 _moveInput, _lookMouseInput, _lookGamepadInput;
     private Vector3 rotationTarget, aimDirection , movement;
     private Quaternion rotation;
-    private RaycastHit _hit;
+    public RaycastHit _hit;
     private float _jumpVelocity;
     private bool _gamepad;
 
@@ -41,29 +42,30 @@ public class PlayerControll : MonoBehaviour
     }
     public void OnInteractionA(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (!context.started)
+            return;
+
+        Debug.Log("started");
+        if (_pickUpSystem._pickUp)
+            return;
+        
+        Debug.Log("_pickup");
+        if (Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange, _pickableLayer))
         {
-            Debug.Log("started");
-            if(!_pickUpSystem._pickUp)
-            {
-                Debug.Log("_pickup");
-                if (Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange, _pickableLayer))
-                {
-                    Debug.Log("raycast");
-                    _pickUpSystem.PickUp(_hit);
-                }
-            }
+            Debug.Log("raycast");
+            _pickUpSystem.PickUp(_hit);
         }
     }
     public void OnInteractionB(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (!context.started)
         {
-            if (_pickUpSystem._pickUp)
-            {
-                _pickUpSystem.Drop();
-                StartCoroutine(WaitToPickUp());
-            }
+            return;
+        }
+        if (_pickUpSystem._pickUp)
+        {
+            _pickUpSystem.Drop();
+            StartCoroutine(WaitToPickUp());
         }
     }
     public void OnInteractionX(InputAction.CallbackContext context)
@@ -79,7 +81,15 @@ public class PlayerControll : MonoBehaviour
     }
     private void Update()
     {
-        if(!_gamepad)
+        if (!Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange, _pickableLayer) || _pickUpSystem._pickUp)
+        {
+            _pickUpSystem.RemoveOutlineObject();
+        }
+        else
+        {
+            _pickUpSystem.OutlineObject(_hit);
+        }
+        if (!_gamepad)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(_lookMouseInput);
@@ -133,7 +143,6 @@ public class PlayerControll : MonoBehaviour
 
         }
     }
-
     private void Jump()
     {
         if (cc.isGrounded)
@@ -141,7 +150,6 @@ public class PlayerControll : MonoBehaviour
             _jumpVelocity = _jumpHeight;
         }   
     }
-
     IEnumerator WaitToPickUp()
     {
         yield return new WaitForSeconds(0.45f);
