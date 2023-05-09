@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56650044ed631f4abf8549312e6f853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestroy: 2
   onPlayerHit:
     m_PersistentCalls:
       m_Calls:
@@ -147,7 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 95315113320a70944b50605736c57b0f, type: 2}
   breakForce: 150
-  timeToDestroyFragments: 2
 --- !u!1001 &4368352981563655859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +228,27 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 29149ac902fd5b6438ee4efd3bce6e74,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 29149ac902fd5b6438ee4efd3bce6e74,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 358fad012895cca4a92650188e5c4546, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 29149ac902fd5b6438ee4efd3bce6e74,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a987d0ea71cfb25438b94740beb5c89b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 29149ac902fd5b6438ee4efd3bce6e74,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 239378781582670930, guid: 29149ac902fd5b6438ee4efd3bce6e74,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 29149ac902fd5b6438ee4efd3bce6e74,
         type: 3}
       propertyPath: m_Name

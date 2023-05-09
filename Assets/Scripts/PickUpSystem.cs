@@ -8,7 +8,6 @@ public class PickUpSystem : MonoBehaviour
     [SerializeField] private Transform _itemHolder;
     [Min(1)]
     [SerializeField] private float _dropForwardForce, _dropUpwardForce, rotateMultiplayer;
-    [SerializeField] private float outlineThickness,hightLightPower;    
 
     private const int THROWED_LAYER_NUMBER = 7;
 
@@ -60,9 +59,9 @@ public class PickUpSystem : MonoBehaviour
     }
     public void OutlineObject(RaycastHit _hit)
     {
-        _outlineMaterial = _hit.collider.GetComponent<MeshRenderer>().materials[1];
-        _hihlightMaterial = _hit.collider.GetComponent<MeshRenderer>().materials[2];
-        _outlineMaterial.SetFloat("_Outline_Thicnes", outlineThickness);
+        _outlineMaterial = _hit.collider.GetComponentInChildren<MeshRenderer>().materials[0];
+        _hihlightMaterial = _hit.collider.GetComponentInChildren<MeshRenderer>().materials[1];
+        _outlineMaterial.SetInt("_switch", 1);
         _hihlightMaterial.SetFloat("_switch", 1);
     }
     public void RemoveOutlineObject()
@@ -71,7 +70,7 @@ public class PickUpSystem : MonoBehaviour
         if (_outlineMaterial == null || _hihlightMaterial == null)
             return;
         
-        _outlineMaterial.SetFloat("_Outline_Thicnes", 0);
+        _outlineMaterial.SetInt("_switch", 0);
         _hihlightMaterial.SetInt("_switch", 0);
         _outlineMaterial = null;
         _hihlightMaterial = null;
