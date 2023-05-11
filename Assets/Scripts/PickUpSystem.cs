@@ -6,23 +6,16 @@ using UnityEngine;
 public class PickUpSystem : MonoBehaviour
 {
     [SerializeField] private Transform _itemHolder;
-    [SerializeField] GameObject _objectInHand;
+    [SerializeField] public GameObject _objectInHand;
     [Min(1)]
-    [SerializeField] private SO_FloatValue _dropForwardForce, _dropUpwardForce, rotateMultiplayer;
+    [SerializeField] private SO_FloatValue rotateMultiplayer;
 
     public bool _pickUp;
 
-    private const int THROWED_LAYER_NUMBER = 7;
-
-    private Rigidbody _objectInHandRb;
+    public Rigidbody _objectInHandRb;
     private PickUpObject _object;
     private Material _outlineMaterial;
     private Material _hihlightMaterial;
-
-
-
-    
-
     private void Awake()
     {
         _pickUp = false;
@@ -48,19 +41,17 @@ public class PickUpSystem : MonoBehaviour
         _objectInHand.transform.localPosition = Vector3.zero;
         _objectInHand.transform.localRotation = Quaternion.identity;
 
+        
         _object.enabled = false;
         _pickUp = true;
     }
     public void Drop()
     {
-        _objectInHand.GameObject().layer = THROWED_LAYER_NUMBER;
         _objectInHand.transform.SetParent(null);
         _objectInHandRb.isKinematic = false;
-        _objectInHandRb.AddForce(transform.forward * _dropForwardForce.value, ForceMode.Impulse);
-        _objectInHandRb.AddForce(transform.up * _dropUpwardForce.value, ForceMode.Impulse);
-        float random = Random.Range(-1f, 1f);
-        _objectInHandRb.AddTorque(new Vector3(random, random, random) * rotateMultiplayer.value);
 
+        StartCoroutine(WaitToPickUp());
+        _objectInHandRb = null;
         _objectInHand = null;
         _object.enabled = true;
     }
@@ -81,5 +72,10 @@ public class PickUpSystem : MonoBehaviour
         _hihlightMaterial.SetInt("_switch", 0);
         _outlineMaterial = null;
         _hihlightMaterial = null;
+    }
+    IEnumerator WaitToPickUp()
+    {
+        yield return new WaitForSeconds(0.45f);
+        _pickUp = false;
     }
 }

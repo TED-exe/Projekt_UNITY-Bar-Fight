@@ -20,7 +20,7 @@ public class PlayerControll : MonoBehaviour
     private Quaternion rotation;
     public RaycastHit _hit;
     private float _jumpVelocity;
-    private bool _gamepad, _interactionX = false;
+    public bool _gamepad, _interactionX = false;
 
     private void Awake()
     {
@@ -72,18 +72,21 @@ public class PlayerControll : MonoBehaviour
         if (_pickUpSystem._pickUp)
         {
             _pickUpSystem.Drop();
-            StartCoroutine(WaitToPickUp());
+            
         }
     }
     public void OnInteractionX(InputAction.CallbackContext context)
     {
-        if(context.canceled)
+        if (_pickUpSystem._pickUp)
         {
-            _interactionX = false;
-        }
-        else
-        {
-            _interactionX = true;
+            if (context.canceled)
+            {
+                _interactionX = false;
+            }
+            else
+            {
+                _interactionX = true;
+            }
         }
     }
     public void OnJump(InputAction.CallbackContext context)
@@ -95,6 +98,14 @@ public class PlayerControll : MonoBehaviour
     }
     private void Update()
     {
+        if(_interactionX)
+        {
+            _throwSystem.ChargeThrow();
+        }
+        else
+        {
+            _throwSystem.ResetThrowVelocity();
+        }
         if (!Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange.value, _pickableLayer) || _pickUpSystem._pickUp)
         {
             _pickUpSystem.RemoveOutlineObject();
@@ -163,10 +174,5 @@ public class PlayerControll : MonoBehaviour
         {
             _jumpVelocity = _jumpHeight.value;
         }   
-    }
-    IEnumerator WaitToPickUp()
-    {
-        yield return new WaitForSeconds(0.45f);
-        _pickUpSystem._pickUp = false;
     }
 }

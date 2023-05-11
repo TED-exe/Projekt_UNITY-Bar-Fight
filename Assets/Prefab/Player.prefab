@@ -472,10 +472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemHolder: {fileID: 8626898901825918274}
   _objectInHand: {fileID: 11400000, guid: fa0ea99c6cc12e74789e945f998676b4, type: 2}
-  _dropForwardForce: {fileID: 11400000, guid: 207cfed3fc4451a4eb01b67f16fb75af, type: 2}
-  _dropUpwardForce: {fileID: 11400000, guid: 0894293e1afb09a458b6ad1fd851a17c, type: 2}
   rotateMultiplayer: {fileID: 11400000, guid: 4c98d41295f2c674491a5813ba7ed1c2, type: 2}
-  _pickUp: {fileID: 11400000, guid: 4902a8b385bf61149b4932f63f89b91c, type: 2}
+  _pickUp: 0
+  _objectInHandRb: {fileID: 0}
 --- !u!114 &2096126328018980617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +500,8 @@ MonoBehaviour:
   gravityMultiplier: {fileID: 11400000, guid: 1d6ad5610b789dd4aaa7d5635a9f2b33, type: 2}
   _pickUpRange: {fileID: 11400000, guid: 0e50e9a577dd65c40a0a1c266a14bdcb, type: 2}
   _raycastCaster: {fileID: 1932449591918906829}
+  _gamepad: 0
+  _interactionX: 0
 --- !u!114 &5409361892827793022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,9 +514,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e01516a3f4405746bf9b528cfcb1202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxThrowVelocity: {fileID: 0}
-  _throwVelocityMultiplayer: {fileID: 0}
-  _rotateMultiplayer: {fileID: 0}
+  _maxThrowVelocity: {fileID: 11400000, guid: a4e70c5238d667d46b3ef15ba14fd838, type: 2}
+  _throwVelocityChargeMultiplayer: {fileID: 11400000, guid: e798d1ae667ea6242817940a1cc0bdbc,
+    type: 2}
+  _rotateMultiplayer: {fileID: 11400000, guid: 3cbf9e34dbd6c4047a2451c46e8f3a9c, type: 2}
+  _upThrowVelocity: {fileID: 11400000, guid: cd5cfd8557330b147bcfb930b6549ee7, type: 2}
+  _pickUpSystem: {fileID: 3816539192200478326}
+  _throwVelocity: 0
 --- !u!1 &5762432340100865065
 GameObject:
   m_ObjectHideFlags: 0
