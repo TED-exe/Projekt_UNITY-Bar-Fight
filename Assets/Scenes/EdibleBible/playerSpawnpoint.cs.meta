@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6545d765883f9d644acd7ff36b2ba4cf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPrefab: {fileID: 2350417982065529107, guid: 52fd9b615b7b8a048be7858232a586bf,
+      type: 3}
+  - keyboardSpawnPoint: {instanceID: 0}
+  - gamepadSpawnPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
