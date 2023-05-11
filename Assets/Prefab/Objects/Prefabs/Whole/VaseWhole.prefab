@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56650044ed631f4abf8549312e6f853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestroy: 2
   onPlayerHit:
     m_PersistentCalls:
       m_Calls:
@@ -229,6 +228,27 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c431a5eab61c57c4d845c7f6884207a1,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c431a5eab61c57c4d845c7f6884207a1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 358fad012895cca4a92650188e5c4546, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c431a5eab61c57c4d845c7f6884207a1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a987d0ea71cfb25438b94740beb5c89b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c431a5eab61c57c4d845c7f6884207a1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 5629084884208175553, guid: c431a5eab61c57c4d845c7f6884207a1,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: c431a5eab61c57c4d845c7f6884207a1,
         type: 3}
       propertyPath: m_Name

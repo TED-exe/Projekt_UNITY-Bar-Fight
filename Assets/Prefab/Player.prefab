@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: -6583182698627229334}
   - component: {fileID: 3816539192200478326}
   - component: {fileID: 2096126328018980617}
-  - component: {fileID: -3466161927221452629}
+  - component: {fileID: 5409361892827793022}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -471,12 +471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemHolder: {fileID: 8626898901825918274}
-  _dropForwardForce: 4
-  _dropUpwardForce: 4
-  rotateMultiplayer: 1
-  outlineThickness: 2
-  hightLightPower: 0
+  _objectInHand: {fileID: 11400000, guid: fa0ea99c6cc12e74789e945f998676b4, type: 2}
+  rotateMultiplayer: {fileID: 11400000, guid: 4c98d41295f2c674491a5813ba7ed1c2, type: 2}
   _pickUp: 0
+  _objectInHandRb: {fileID: 0}
 --- !u!114 &2096126328018980617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,16 +490,19 @@ MonoBehaviour:
   _input: {fileID: 769488856380306001}
   cc: {fileID: -6583182698627229334}
   _pickUpSystem: {fileID: 3816539192200478326}
+  _throwSystem: {fileID: 5409361892827793022}
   _pickableLayer:
     serializedVersion: 2
     m_Bits: 8
-  _playerSpeed: 7
-  _rotateSpeed: 7
-  _jumpHeight: 5
-  gravityMultiplier: 1
-  _pickUpRange: 3
+  _playerSpeed: {fileID: 11400000, guid: 0b2da762ada55ba4496a136ea0e31f0b, type: 2}
+  _rotateSpeed: {fileID: 11400000, guid: 2175f4ca01d006b41b6cef50a73ede31, type: 2}
+  _jumpHeight: {fileID: 11400000, guid: 128a6b08234abdb4f8d935362db8ffa9, type: 2}
+  gravityMultiplier: {fileID: 11400000, guid: 1d6ad5610b789dd4aaa7d5635a9f2b33, type: 2}
+  _pickUpRange: {fileID: 11400000, guid: 0e50e9a577dd65c40a0a1c266a14bdcb, type: 2}
   _raycastCaster: {fileID: 1932449591918906829}
---- !u!114 &-3466161927221452629
+  _gamepad: 0
+  _interactionX: 0
+--- !u!114 &5409361892827793022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -510,26 +511,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2350417982065529107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a7fb0a58b843241a5c9547b7c850dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e01516a3f4405746bf9b528cfcb1202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEventToSubscribe: {fileID: 11400000, guid: 0bb2f4acb72f6734db7e0f5216f5c09a,
+  _maxThrowVelocity: {fileID: 11400000, guid: a4e70c5238d667d46b3ef15ba14fd838, type: 2}
+  _throwVelocityChargeMultiplayer: {fileID: 11400000, guid: e798d1ae667ea6242817940a1cc0bdbc,
     type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3816539192200478326}
-        m_TargetAssemblyTypeName: PickUpSystem, Assembly-CSharp
-        m_MethodName: RemoveOutlineObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _rotateMultiplayer: {fileID: 11400000, guid: 3cbf9e34dbd6c4047a2451c46e8f3a9c, type: 2}
+  _upThrowVelocity: {fileID: 11400000, guid: cd5cfd8557330b147bcfb930b6549ee7, type: 2}
+  _pickUpSystem: {fileID: 3816539192200478326}
+  _throwVelocity: 0
 --- !u!1 &5762432340100865065
 GameObject:
   m_ObjectHideFlags: 0
