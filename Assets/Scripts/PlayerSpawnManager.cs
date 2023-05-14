@@ -10,12 +10,23 @@ public class PlayerSpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> playerRespawnPoints;
 
-    UnityEvent sendSpawnPoint;
+    public delegate void SpawnPoint(GameObject randomSpawnPoint);
+    public static event SpawnPoint OnSpawned;
+
+    private void OnEnable()
+    {
+        PlayerDeathLogic.OnHit += SendLocation;
+    }
+
+    private void OnDisable()
+    {
+        PlayerDeathLogic.OnHit -= SendLocation;
+    }
 
     public void SendLocation()
     {
-        GetPlayerRandomSpawnPoint();
-        sendSpawnPoint.Invoke();
+        if (OnSpawned != null) 
+            OnSpawned(GetPlayerRandomSpawnPoint());
     }
     
     public GameObject GetPlayerRandomSpawnPoint()
