@@ -38,7 +38,7 @@ public class ThrowSystem : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(_pickUpSystem._objectInHandRb);
+        //Debug.Log(_pickUpSystem._objectInHandRb);
     }
 
 }
