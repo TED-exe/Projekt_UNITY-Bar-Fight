@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 3816539192200478326}
   - component: {fileID: 2096126328018980617}
   - component: {fileID: 5409361892827793022}
+  - component: {fileID: 1962280877096710095}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -521,6 +522,33 @@ MonoBehaviour:
   _upThrowVelocity: {fileID: 11400000, guid: cd5cfd8557330b147bcfb930b6549ee7, type: 2}
   _pickUpSystem: {fileID: 3816539192200478326}
   _throwVelocity: 0
+--- !u!114 &1962280877096710095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350417982065529107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a4d88566267de45bde316a9fb19486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerSpawnManager, Assembly-CSharp
+        m_MethodName: SendLocation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5762432340100865065
 GameObject:
   m_ObjectHideFlags: 0
