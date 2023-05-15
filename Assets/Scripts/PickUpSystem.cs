@@ -6,16 +6,15 @@ using UnityEngine;
 public class PickUpSystem : MonoBehaviour
 {
     [SerializeField] private Transform _itemHolder;
-    [SerializeField] public GameObject _objectInHand;
     [Min(1)]
     [SerializeField] private SO_FloatValue rotateMultiplayer;
+    public GameObject _objectInHand;
 
-    public bool _pickUp;
+    [HideInInspector] public bool _pickUp;
+    [HideInInspector]public Rigidbody _objectInHandRb;
 
-    public Rigidbody _objectInHandRb;
     private PickUpObject _object;
-    private Material _outlineMaterial;
-    private Material _hihlightMaterial;
+    private GameObject _outlinedGameobject;
     private void Awake()
     {
         _pickUp = false;
@@ -57,21 +56,15 @@ public class PickUpSystem : MonoBehaviour
     }
     public void OutlineObject(RaycastHit _hit)
     {
-        _outlineMaterial = _hit.collider.GetComponentInChildren<MeshRenderer>().materials[0];
-        _hihlightMaterial = _hit.collider.GetComponentInChildren<MeshRenderer>().materials[1];
-        _outlineMaterial.SetInt("_switch", 1);
-        _hihlightMaterial.SetFloat("_switch", 1);
+        _outlinedGameobject = _hit.collider.gameObject;
+        _outlinedGameobject.AddComponent<Outline>();
     }
     public void RemoveOutlineObject()
     {
-
-        if (_outlineMaterial == null || _hihlightMaterial == null)
+        if (_outlinedGameobject == null)
             return;
-        
-        _outlineMaterial.SetInt("_switch", 0);
-        _hihlightMaterial.SetInt("_switch", 0);
-        _outlineMaterial = null;
-        _hihlightMaterial = null;
+        Destroy(_outlinedGameobject.GetComponent<Outline>());
+        _outlinedGameobject = null;
     }
     IEnumerator WaitToPickUp()
     {
