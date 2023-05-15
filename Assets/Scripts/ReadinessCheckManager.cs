@@ -15,9 +15,10 @@ public class GamePadTextCombo
 public class ReadinessCheckManager : MonoBehaviour
 {
     [SerializeField] private int connectedControllers;
-    [SerializeField] private int readyControllersCounter;
+    [SerializeField] private SO_IntValue readyControllersCounter;
     [SerializeField] private TMP_Text controllerWarning;
-    private const string SCENETOLOAD = "SampleScene 1";
+    [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
+    private const string SCENETOLOAD = "ted";
     private int readyCount = 0;
     public InputAction readyAction;
     public InputAction startAction;
@@ -39,7 +40,7 @@ public class ReadinessCheckManager : MonoBehaviour
 
     private void OnStartPressed(InputAction.CallbackContext obj)
     {
-        if (readyControllersCounter == 2)
+        if (readyControllersCounter.Value == 2)
         {
             SceneManager.LoadScene(SCENETOLOAD);
         }
@@ -51,6 +52,7 @@ public class ReadinessCheckManager : MonoBehaviour
         foreach (var gamepad in InputSystem.devices.OfType<Gamepad>().Take(2))
         {
             players[currentGamePad].device = gamepad.deviceId;
+            so_playerControllSchema[currentGamePad].value = "Gamepad";
             currentGamePad++;
         }
         players[0].text = textA;
@@ -68,12 +70,12 @@ public class ReadinessCheckManager : MonoBehaviour
         }
         if(readyControllers.Remove(obj.control.device.deviceId))
         {
-            readyControllersCounter--;
+            readyControllersCounter.Value--;
             CheckWarning();
             return;
         }
         readyControllers.Add(obj.control.device.deviceId, true);
-        readyControllersCounter = readyControllers.Count;
+        readyControllersCounter.Value = readyControllers.Count;
         CheckWarning();
     }
 
@@ -94,7 +96,7 @@ public class ReadinessCheckManager : MonoBehaviour
         if (change == InputDeviceChange.Removed && device is Gamepad)
         {
             connectedControllers--;
-            if (readyControllers.Remove(device.deviceId)) readyControllersCounter--;
+            if (readyControllers.Remove(device.deviceId)) readyControllersCounter.Value--;
             foreach (var gamePadTextCombo in players)
             {
                 if (gamePadTextCombo.device == device.deviceId)

@@ -10,6 +10,8 @@ public class PlayerDeathLogic: MonoBehaviour
 {
     public delegate void Hit();
     public static Hit OnHit;
+    [SerializeField] private Transform graveyard;
+
 
     private void OnEnable()
     {
@@ -26,7 +28,8 @@ public class PlayerDeathLogic: MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == 7)
-        { 
+        {
+            //other.gameObject.transform.position = graveyard.position;
             this.GameObject().SetActive(false);
            OnHit?.Invoke();
            GetComponentInParent<RespawnPlayer>().StartSpawning();

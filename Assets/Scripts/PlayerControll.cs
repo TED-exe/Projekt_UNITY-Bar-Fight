@@ -48,19 +48,12 @@ public class PlayerControll : MonoBehaviour
         if (!context.started)
             return;
 
-        Debug.Log("started");
         if (_pickUpSystem._pickUp)
             return;
         
-        Debug.Log("_pickup");
         if (Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange.value, _pickableLayer))
         {
-            Debug.Log("raycast");
             _pickUpSystem.PickUp(_hit);
-        }
-        else
-        {
-            Debug.Log("nic nie trafil");
         }
     }
     public void OnInteractionB(InputAction.CallbackContext context)
@@ -172,7 +165,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (cc.isGrounded)
         {
-            _jumpVelocity = _jumpHeight.value;
+            //_jumpVelocity = _jumpHeight.value;
         }   
     }
 }
