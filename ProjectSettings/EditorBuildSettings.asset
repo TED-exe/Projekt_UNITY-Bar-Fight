@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DominikD/DominikPlayerReady.unity
-    guid: a34ba6f0189dc8d48b6172415f219189
+    path: Assets/Scenes/Ted/PlayerReady.unity
+    guid: f7c55111cbc57c44a89fe24ca589a280
+  - enabled: 1
+    path: Assets/Scenes/Ted/tedUi.unity
+    guid: 657679d55efd6d74ea5788f08a7f128b
   - enabled: 1
     path: Assets/Scenes/Ted/ted.unity
     guid: 24ce4f24e9c3f7743ac22f902ca02607

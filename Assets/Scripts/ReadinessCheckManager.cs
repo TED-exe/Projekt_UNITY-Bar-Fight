@@ -18,7 +18,8 @@ public class ReadinessCheckManager : MonoBehaviour
     [SerializeField] private SO_IntValue readyControllersCounter;
     [SerializeField] private TMP_Text controllerWarning;
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
-    private const string SCENETOLOAD = "ted";
+    private const string MainScenToLoad = "ted";
+    private const string UiSceneToLoad = "tedUi";
     private int readyCount = 0;
     public InputAction readyAction;
     public InputAction startAction;
@@ -42,12 +43,17 @@ public class ReadinessCheckManager : MonoBehaviour
     {
         if (readyControllersCounter.Value == 2)
         {
-            SceneManager.LoadScene(SCENETOLOAD);
+            SceneManager.LoadScene(MainScenToLoad,LoadSceneMode.Single);
+            SceneManager.LoadScene(UiSceneToLoad,LoadSceneMode.Additive);
         }
     }
 
     private void Awake()
     {
+        foreach(var controllschema in so_playerControllSchema)
+        {
+            controllschema.value = null;
+        }
         int currentGamePad = 0;
         foreach (var gamepad in InputSystem.devices.OfType<Gamepad>().Take(2))
         {

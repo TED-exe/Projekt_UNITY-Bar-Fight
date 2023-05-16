@@ -16,12 +16,12 @@ public class GameMenager : MonoBehaviour
         _playerInputManager.playerPrefab = go_playerPrefab;
         for(var i =0; i < so_playerCount.Value; i++)
         {
-            Debug.Log(i);
             if (so_playerControllSchema[i].value == "Gamepad")
                 _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
             else if(so_playerControllSchema[i].value == "Keyboard&Mouse")
                 _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i], Keyboard.current, Mouse.current);
         }
+        li_playerSpawnPosition.Clear();
         //var player_1 = _playerInputManager.JoinPlayer(0,-1, null);
         //var player_2 =_playerInputManager.JoinPlayer(0, -1, null);
         //player_1.GetComponentInChildren<PlayerInput>().devices = so_playerControllSchema[0].value;

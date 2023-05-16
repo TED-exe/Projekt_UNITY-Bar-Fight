@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThrowSystem : MonoBehaviour
 {
     [Min (1)]
     [SerializeField] private SO_FloatValue _maxThrowVelocity, _throwVelocityChargeMultiplayer, _rotateMultiplayer,_upThrowVelocity;
     [SerializeField] private PickUpSystem _pickUpSystem;
+    [SerializeField] private Image _throwChargeImage;
+    [SerializeField] private Transform _canvasTransform;
 
     private const int THROWED_LAYER_NUMBER = 7;
     public float _throwVelocity ;
@@ -16,6 +19,7 @@ public class ThrowSystem : MonoBehaviour
     {
         if(_throwVelocity < _maxThrowVelocity.value)
             _throwVelocity += Time.fixedDeltaTime * _throwVelocityChargeMultiplayer.value;
+        
     }
     public void ResetThrowVelocity()
     {
@@ -38,7 +42,11 @@ public class ThrowSystem : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(_pickUpSystem._objectInHandRb);
+        _throwChargeImage.fillAmount = _throwVelocity / _maxThrowVelocity.value;
+    }
+    private void LateUpdate()
+    {
+        _canvasTransform.LookAt(transform.position + Camera.main.transform.forward);
     }
 
 }
