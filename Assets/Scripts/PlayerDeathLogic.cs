@@ -16,6 +16,9 @@ public class PlayerDeathLogic: MonoBehaviour
 
     [SerializeField] private int deathCounter;
 
+    public delegate void sendToUI(GameObject player, int deaths);
+    public static sendToUI sendUI;
+
 
     private void OnEnable()
     {
@@ -38,6 +41,7 @@ public class PlayerDeathLogic: MonoBehaviour
             this.GameObject().SetActive(false);
             deathCounter++;
            OnHit?.Invoke();
+            sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
            GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
     }
