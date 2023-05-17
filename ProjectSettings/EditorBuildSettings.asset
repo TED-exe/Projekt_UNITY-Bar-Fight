@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Ted/SampleScene 1.unity
-    guid: 94916b3d72f85234d890590640cde9d9
+    path: Assets/Scenes/Ted/PlayerReady.unity
+    guid: f7c55111cbc57c44a89fe24ca589a280
+  - enabled: 1
+    path: Assets/Scenes/Ted/tedUi.unity
+    guid: 657679d55efd6d74ea5788f08a7f128b
+  - enabled: 1
+    path: Assets/Scenes/Ted/ted.unity
+    guid: 24ce4f24e9c3f7743ac22f902ca02607
   m_configObjects: {}

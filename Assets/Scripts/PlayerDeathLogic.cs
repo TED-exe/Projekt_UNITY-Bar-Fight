@@ -10,10 +10,15 @@ public class PlayerDeathLogic: MonoBehaviour
 {
     public delegate void Hit();
     public static Hit OnHit;
+    private const int THROWED_LAYER = 7;
+    [SerializeField] private Transform graveyard;
+    private PlayerForcefield playerForcefield;
+
 
     private void OnEnable()
     {
         PlayerSpawnManager.OnSpawned += SpawnPlayer;
+        playerForcefield = GetComponent<PlayerForcefield>();
     }
 
     public void SpawnPlayer(GameObject spawnPoint)
@@ -25,8 +30,9 @@ public class PlayerDeathLogic: MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 7)
-        { 
+        if (other.gameObject.layer == THROWED_LAYER && !playerForcefield.isActiveAndEnabled)
+        {
+            //other.gameObject.transform.position = graveyard.position;
             this.GameObject().SetActive(false);
            OnHit?.Invoke();
            GetComponentInParent<RespawnPlayer>().StartSpawning();
