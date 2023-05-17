@@ -14,6 +14,8 @@ public class PlayerDeathLogic: MonoBehaviour
     [SerializeField] private Transform graveyard;
     private PlayerForcefield playerForcefield;
 
+    [SerializeField] private int deathCounter;
+
 
     private void OnEnable()
     {
@@ -30,10 +32,11 @@ public class PlayerDeathLogic: MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == THROWED_LAYER && !playerForcefield.isActiveAndEnabled)
+        if (other.gameObject.layer == THROWED_LAYER)
         {
             //other.gameObject.transform.position = graveyard.position;
             this.GameObject().SetActive(false);
+            deathCounter++;
            OnHit?.Invoke();
            GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
