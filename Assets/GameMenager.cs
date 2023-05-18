@@ -1,7 +1,9 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class GameMenager : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class GameMenager : MonoBehaviour
     [SerializeField] private GameObject go_playerPrefab;
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
     [SerializeField] private PlayerInputManager _playerInputManager;
-    
+    [SerializeField] private CinemachineTargetGroup _cinemaMachine;
+
     private int i = 1;
 
     private void Awake()
@@ -20,14 +23,15 @@ public class GameMenager : MonoBehaviour
         {
             if (so_playerControllSchema[i].value == "Gamepad")
             {
-               _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
+              _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
+              // _playerInputManager.JoinPlayer();
               // newGameobject.name = "Player" + i.ToString();
-                
             }
 
             else if(so_playerControllSchema[i].value == "Keyboard&Mouse")
             {
                 _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i], Keyboard.current, Mouse.current);
+                //_playerInputManager.JoinPlayer();
                 //newGameobject.name = "Player" + i.ToString();
             }
         }
@@ -41,6 +45,7 @@ public class GameMenager : MonoBehaviour
             playerInput.transform.position = li_playerSpawnPosition[randomSpawnPlace].position;
             li_playerSpawnPosition.RemoveAt(randomSpawnPlace);
             playerInput.gameObject.transform.parent.gameObject.name = "Player" + i.ToString();
+            _cinemaMachine.AddMember(playerInput.gameObject.transform,1f,1f);
             i++;
         }
     }
