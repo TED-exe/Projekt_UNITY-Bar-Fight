@@ -13,7 +13,7 @@ public class PlayerControll : MonoBehaviour
 
     [SerializeField] private LayerMask _pickableLayer;
     [SerializeField] private SO_FloatValue _playerSpeed, _rotateSpeed, _jumpHeight, gravityMultiplier, _pickUpRange;
-    [SerializeField] private Transform _raycastCaster;
+    [SerializeField] private Transform _raycastCaster , _rayCasterToMouse;
 
     private Vector2 _moveInput, _lookMouseInput, _lookGamepadInput;
     private Vector3 rotationTarget, aimDirection , movement;
@@ -24,8 +24,6 @@ public class PlayerControll : MonoBehaviour
 
     private void Awake()
     {
-        var forwad = _raycastCaster.position * 10;
-        Debug.DrawRay(_raycastCaster.position, forwad,Color.red);
         if(_input.currentControlScheme == "Gamepad")
             _gamepad = true;
         else
@@ -80,13 +78,6 @@ public class PlayerControll : MonoBehaviour
             {
                 _interactionX = true;
             }
-        }
-    }
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if(context.started)
-        {
-            Jump();
         }
     }
     private void Update()
@@ -160,12 +151,5 @@ public class PlayerControll : MonoBehaviour
             }
 
         }
-    }
-    private void Jump()
-    {
-        if (cc.isGrounded)
-        {
-            //_jumpVelocity = _jumpHeight.value;
-        }   
     }
 }
