@@ -30,7 +30,7 @@ public class GameMenager : MonoBehaviour
 
             else if(so_playerControllSchema[i].value == "Keyboard&Mouse")
             {
-                _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i], Keyboard.current, Mouse.current);
+                _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Keyboard.current, Mouse.current);
                 //_playerInputManager.JoinPlayer();
                 //newGameobject.name = "Player" + i.ToString();
             }
