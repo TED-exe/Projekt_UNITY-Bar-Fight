@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class timerUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class timerUI : MonoBehaviour
     [SerializeField] private bool isTimerRunning = false;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private UnityEvent onTimeEnded;
     private void Start()
     {
         isTimerRunning = true;
@@ -32,6 +34,7 @@ public class timerUI : MonoBehaviour
             {
                 timeRemaining = 0f;
                 isTimerRunning = false;
+                onTimeEnded.Invoke();
             }
         }
     }
