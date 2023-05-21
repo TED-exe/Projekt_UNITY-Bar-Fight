@@ -15,6 +15,7 @@ public class PlayerDeathLogic: MonoBehaviour
     private PlayerForcefield playerForcefield;
 
     [SerializeField] private int deathCounter;
+    public bool isHit = false;
 
     public delegate void sendToUI(GameObject player, int deaths);
     public static sendToUI sendUI;
@@ -32,12 +33,13 @@ public class PlayerDeathLogic: MonoBehaviour
         playerTransform.position = spawnPoint.transform.position + new Vector3(0, 1, 0);
     }
     
-    
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == THROWED_LAYER && !playerForcefield.isActiveAndEnabled)
         {
+            if (isHit) return;
             //other.gameObject.transform.position = graveyard.position;
+            isHit = true;
             this.GameObject().SetActive(false);
             playerForcefield.enabled = true;
             deathCounter++;
