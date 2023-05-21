@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fdfd2c13181884981d49844979e650, type: 3}
   m_Name: playerRagdoll
   m_EditorClassIdentifier: 
-  prefabRagdoll: {fileID: 0}
+  prefabRagdoll: {fileID: 1185386420328282429, guid: 3a1372facf01dcc49ab0690e8d9a0df7,
+    type: 3}
