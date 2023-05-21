@@ -35,10 +35,11 @@ public class PlayerDeathLogic: MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == THROWED_LAYER)
+        if (other.gameObject.layer == THROWED_LAYER && !playerForcefield.isActiveAndEnabled)
         {
             //other.gameObject.transform.position = graveyard.position;
             this.GameObject().SetActive(false);
+            playerForcefield.enabled = true;
             deathCounter++;
            OnHit?.Invoke();
             sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
