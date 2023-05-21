@@ -10,10 +10,12 @@ public class PlayerForcefield : MonoBehaviour
     [SerializeField] private float blinkSpeed = 1f;
     [SerializeField] private float forceFieldTime = 2f;
     private Renderer playerRenderer;
+    private PlayerDeathLogic playerDeathLogic;
 
     private void OnEnable()
     {
         playerRenderer = GetComponent<Renderer>();
+        playerDeathLogic = GetComponent<PlayerDeathLogic>();
         StartCoroutine(ForceFieldStart());
     }
 
@@ -36,6 +38,7 @@ public class PlayerForcefield : MonoBehaviour
     IEnumerator ForceFieldStart()
     {
         yield return new WaitForSeconds(forceFieldTime);
+        playerDeathLogic.isHit = false;
         gameObject.GetComponent<PlayerForcefield>().enabled = false;
     }
 }
