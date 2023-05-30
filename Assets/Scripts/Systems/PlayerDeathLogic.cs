@@ -10,7 +10,6 @@ using UnityEngine.Events;
 public class PlayerDeathLogic: MonoBehaviour
 {
     private const int THROWED_LAYER = 7;
-    [SerializeField] private Transform graveyard;
     [SerializeField] private float ragdollSpeed = 10f;
     private PlayerForcefield playerForcefield;
     private ThrowSystem throwSystem;
