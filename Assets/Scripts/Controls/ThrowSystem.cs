@@ -9,12 +9,16 @@ public class ThrowSystem : MonoBehaviour
     [Min (1)]
     [SerializeField] private SO_FloatValue _maxThrowVelocity, _throwVelocityChargeMultiplayer, _rotateMultiplayer,_upThrowVelocity;
     [SerializeField] private PickUpSystem _pickUpSystem;
-    [SerializeField] private Image _throwChargeImage;
-    [SerializeField] private Transform _canvasTransform;
+    [SerializeField] private Image _throwChargeImage, _throwChargeBackgroundImage,_playerImage;
+    [SerializeField] private Transform _canvasTransform, _cameraTransform;
 
     private const int THROWED_LAYER_NUMBER = 7;
     public float _throwVelocity ;
 
+    public void SetCameraTransform(Transform transform)
+    {
+        _cameraTransform = transform;
+    }
     public void ChargeThrow()
     {
         if(_throwVelocity < _maxThrowVelocity.value)
@@ -32,6 +36,10 @@ public class ThrowSystem : MonoBehaviour
     }
     private void Throw()
     {
+        if (_pickUpSystem._objectInHand == null)
+        {
+            return;
+        }
         _pickUpSystem._objectInHandRb.isKinematic = false;
         _pickUpSystem._objectInHandRb.AddForce(transform.forward * _throwVelocity, ForceMode.Impulse);
         _pickUpSystem._objectInHandRb.AddForce(transform.up * _upThrowVelocity.value, ForceMode.Impulse);
@@ -42,11 +50,22 @@ public class ThrowSystem : MonoBehaviour
     }
     private void Update()
     {
-        _throwChargeImage.fillAmount = _throwVelocity / _maxThrowVelocity.value;
+        if(_throwVelocity != 0)
+        {
+            _throwChargeBackgroundImage.enabled = true;
+            _throwChargeImage.enabled = true;
+            _throwChargeImage.fillAmount = _throwVelocity / _maxThrowVelocity.value;
+        }
+        else
+        {
+            _throwChargeImage.enabled = false;
+            _throwChargeBackgroundImage.enabled = false;
+        }
     }
     private void LateUpdate()
     {
-        _canvasTransform.LookAt(transform.position + Camera.main.transform.forward);
+        _canvasTransform.LookAt(_cameraTransform);
+        _playerImage.transform.LookAt(_cameraTransform);
     }
 
 }

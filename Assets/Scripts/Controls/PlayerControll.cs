@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,16 +11,17 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private CharacterController cc;
     [SerializeField] private PickUpSystem _pickUpSystem;
     [SerializeField] private ThrowSystem _throwSystem;
+    [SerializeField] private Animator _animator;
 
     [SerializeField] private LayerMask _pickableLayer;
     [SerializeField] private SO_FloatValue _playerSpeed, _rotateSpeed, _jumpHeight, gravityMultiplier, _pickUpRange;
     [SerializeField] private Transform _raycastCaster , _rayCasterToMouse;
 
+    private float _jumpVelocity;
     private Vector2 _moveInput, _lookMouseInput, _lookGamepadInput;
     private Vector3 rotationTarget, aimDirection , movement;
     private Quaternion rotation;
     public RaycastHit _hit;
-    private float _jumpVelocity;
     public bool _gamepad, _interactionX = false;
 
     private void Awake()
@@ -82,13 +84,13 @@ public class PlayerControll : MonoBehaviour
     }
     private void Update()
     {
-        if(_interactionX)
+        if (!_interactionX)
         {
-            _throwSystem.ChargeThrow();
+            _throwSystem.ResetThrowVelocity();
         }
         else
         {
-            _throwSystem.ResetThrowVelocity();
+            _throwSystem.ChargeThrow();
         }
         if (!Physics.Raycast(_raycastCaster.position, _raycastCaster.forward, out _hit, _pickUpRange.value, _pickableLayer) || _pickUpSystem._pickUp)
         {
@@ -117,7 +119,7 @@ public class PlayerControll : MonoBehaviour
     }
     private void Move()
     {
-        movement = new Vector3(_moveInput.x, _jumpVelocity, _moveInput.y);
+        movement = new Vector3(_moveInput.x, 0, _moveInput.y);
         if(_gamepad)
         {
             cc.Move(movement * _playerSpeed.value * Time.deltaTime);
@@ -126,7 +128,11 @@ public class PlayerControll : MonoBehaviour
         {
             cc.Move(transform.rotation * movement * _playerSpeed.value * Time.deltaTime);
         }
-        
+        WalkAnimation();
+    }
+    private void WalkAnimation()
+    {
+        _animator.SetFloat("Blend",_moveInput.magnitude);
     }
     private void Aim()
     {
@@ -136,7 +142,7 @@ public class PlayerControll : MonoBehaviour
             look.y = 0f;
             rotation = Quaternion.LookRotation(look);
 
-            aimDirection = new Vector3(rotationTarget.x , 0f , rotationTarget.y);
+            aimDirection = new Vector3(rotationTarget.x , _jumpVelocity, rotationTarget.y);
             if (aimDirection != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _rotateSpeed.value);

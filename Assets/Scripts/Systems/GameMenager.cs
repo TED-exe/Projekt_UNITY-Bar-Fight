@@ -14,6 +14,7 @@ public class GameMenager : MonoBehaviour
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
     [SerializeField] private PlayerInputManager _playerInputManager;
     [SerializeField] private CinemachineTargetGroup _cinemaMachine;
+    [SerializeField] private Transform _cameraHolderTransform;
 
     private int i = 1;
 
@@ -43,7 +44,7 @@ public class GameMenager : MonoBehaviour
     }
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("tak");
+        go_playerPrefab.GetComponentInChildren<ThrowSystem>().SetCameraTransform(_cameraHolderTransform);
         if (li_playerSpawnPosition.Count >0)
         {
             var randomSpawnPlace = Random.Range(0, li_playerSpawnPosition.Count);

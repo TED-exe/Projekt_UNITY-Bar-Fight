@@ -29,7 +29,10 @@ public class PickUpSystem : MonoBehaviour
     }
     public void PickUp(RaycastHit _hit)
     {
-        _object = _hit.transform.GetComponent<PickUpObject>();
+        if (_hit.collider.gameObject.layer != 3)
+            return;
+        else
+            _object = _hit.transform.GetComponent<PickUpObject>();
         if (!_object.enabled)
             return;
         
@@ -46,6 +49,10 @@ public class PickUpSystem : MonoBehaviour
     }
     public void Drop()
     {
+        if (_objectInHand == null)
+        {
+            return;
+        }
         _objectInHand.transform.SetParent(null);
         _objectInHandRb.isKinematic = false;
 
@@ -53,11 +60,15 @@ public class PickUpSystem : MonoBehaviour
         _objectInHandRb = null;
         _objectInHand = null;
         _object.enabled = true;
+
     }
     public void OutlineObject(RaycastHit _hit)
     {
-        _outlinedGameobject = _hit.collider.gameObject;
-        _outlinedGameobject.AddComponent<Outline>();
+        if(_hit.collider.gameObject.layer == 3)
+        {
+            _outlinedGameobject = _hit.collider.gameObject;
+            _outlinedGameobject.AddComponent<Outline>();
+        }
     }
     public void RemoveOutlineObject()
     {
