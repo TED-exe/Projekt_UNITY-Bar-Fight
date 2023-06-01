@@ -28,6 +28,9 @@ public class PlayerDeathLogic: MonoBehaviour
     public delegate void ragdoll(Vector3 objectVelocity);
     public static ragdoll sendToRagdoll;    
     
+    public delegate void sendDoTween(GameObject player);
+    public static sendDoTween doTweenSend;  
+    
     [SerializeField] private SO_Ragdoll playerRagdoll;
 
 
@@ -59,6 +62,7 @@ public class PlayerDeathLogic: MonoBehaviour
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
             sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
+            doTweenSend?.Invoke(gameObject.transform.parent.gameObject);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
     }
