@@ -19,13 +19,28 @@ public class SkullDoTween : MonoBehaviour
     private void SpawnUISkull(GameObject player)
     {
         var cameraToScreen = camera.WorldToScreenPoint(player.transform.position);
-        var newSkull = Instantiate(skullUIPrefab, cameraToScreen, quaternion.identity);
-        newSkull.transform.SetParent(transform.parent);
-        newSkull.transform.DOMove(new Vector2(20, canvasTransform.rect.size.y-20), 1f).OnComplete(() =>
+        var newSkull = Instantiate(skullUIPrefab, cameraToScreen, Quaternion.identity, this.gameObject.transform);
+        newSkull.transform.DOMove(new Vector2(20, canvasTransform.rect.size.y - 20), 1f).OnComplete(() =>
         {
             Destroy(newSkull);
         });
         var skull = newSkull.GetComponent<RawImage>();
         skull.DOFade(0f, 0.8f);
+
     }
+
+    public static Vector3 WorldToScreenSpace(Vector3 worldPos, Camera cam, RectTransform area)
+    {
+        Vector3 screenPoint = cam.WorldToScreenPoint(worldPos);
+        screenPoint.z = 0;
+
+        Vector2 screenPos;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(area, screenPoint, cam, out screenPos))
+        {
+            return screenPos;
+        }
+
+        return screenPoint;
+    }
+
 }

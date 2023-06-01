@@ -55,14 +55,14 @@ public class PlayerDeathLogic: MonoBehaviour
             //other.gameObject.transform.position = graveyard.position;
             isHit = true;
             collisionVelocity = other.relativeVelocity.normalized * ragdollSpeed;
-            Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
-            this.GameObject().SetActive(false);
+            GameObject ragdoll = Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
+            gameObject.SetActive(false);
             playerForcefield.enabled = true;
             deathCounter++;
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
             sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
-            doTweenSend?.Invoke(gameObject.transform.parent.gameObject);
+            doTweenSend?.Invoke(ragdoll);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
     }
