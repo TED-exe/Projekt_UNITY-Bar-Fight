@@ -51,7 +51,7 @@ public class GameMenager : MonoBehaviour
             playerInput.transform.position = li_playerSpawnPosition[randomSpawnPlace].position;
             li_playerSpawnPosition.RemoveAt(randomSpawnPlace);
             playerInput.gameObject.transform.parent.gameObject.name = "Player" + i.ToString();
-            _cinemaMachine.AddMember(playerInput.gameObject.transform,1f,1f);
+            _cinemaMachine.AddMember(playerInput.gameObject.transform,1f,3.5f);
             i++;
         }
     }
