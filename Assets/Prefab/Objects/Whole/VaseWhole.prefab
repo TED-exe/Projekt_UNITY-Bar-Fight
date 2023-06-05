@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2049121289}
   - component: {fileID: 2049121297}
   - component: {fileID: -5868236662025669183}
+  - component: {fileID: -1251165095368576670}
   m_Layer: 3
   m_Name: VaseWhole
   m_TagString: Untagged
@@ -382,6 +383,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1251165095368576670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2174106234479786379}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7057447433645062864
 PrefabInstance:
   m_ObjectHideFlags: 0
