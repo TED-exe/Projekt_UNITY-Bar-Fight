@@ -1,10 +1,5 @@
-﻿using DG.Tweening;
-using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -17,17 +12,13 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private SO_FloatValue _pickUpRange;
     [SerializeField] private Transform _raycastCaster;
 
-    private Vector2 _moveInput, _lookMouseInput, _lookGamepadInput;
+    private Vector2 _moveInput, _lookGamepadInput;
     private Quaternion _rotation;
     public RaycastHit _hit;
-    public bool _gamepad, _interactionX = false;
+    public bool _interactionX = false;
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
-    }
-    public void OnMouseLook(InputAction.CallbackContext context)
-    {
-        _lookMouseInput = context.ReadValue<Vector2>();
     }
     public void OnGamepadLook(InputAction.CallbackContext context)
     {
@@ -62,13 +53,6 @@ public class PlayerControll : MonoBehaviour
         else
             _interactionX = true;
     }
-    private void Awake()
-    {
-        if (_input.currentControlScheme == "Gamepad")
-            _gamepad = true;
-        else
-            _gamepad = false;
-    }
     private void Update()
     {
         if (!_interactionX)
@@ -88,9 +72,8 @@ public class PlayerControll : MonoBehaviour
             }
             _pickUpSystem.OutlineObject(_hit);
         }
-        _playerMovement.Aim(_gamepad, _lookGamepadInput, _rotation);
-        _playerMovement.Move(_gamepad,_moveInput);
-        _playerMovement.TargetToLookMouse(_gamepad, _lookMouseInput);
+        _playerMovement.Aim(_lookGamepadInput, _rotation);
+        _playerMovement.Move(_moveInput);
     }
 
 }

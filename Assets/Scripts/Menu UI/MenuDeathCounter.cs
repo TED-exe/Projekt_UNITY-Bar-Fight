@@ -35,12 +35,12 @@ public class MenuDeathCounter : MonoBehaviour
         if (player.name == PLAYER_ONE_NAME)
         {
             firstPlayerDeaths++;
-            playerOneText.text = "Player 1 Deaths:\n" + deaths;
+            playerOneText.text = "Player 2 Kills:\n" + deaths;
         }
         else
         {
             secondPlayerDeaths++;
-            playerTwoText.text = "Player 2 Death:\n" + deaths;
+            playerTwoText.text = "Player 1 Kills:\n" + deaths;
         }
     }
 
