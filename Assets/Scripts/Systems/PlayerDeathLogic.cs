@@ -27,6 +27,9 @@ public class PlayerDeathLogic: MonoBehaviour
     public delegate void ragdoll(Vector3 objectVelocity);
     public static ragdoll sendToRagdoll;    
     
+    public delegate void sendDoTween(GameObject player);
+    public static sendDoTween doTweenSend;  
+    
     [SerializeField] private SO_Ragdoll playerRagdoll;
 
 
@@ -51,13 +54,14 @@ public class PlayerDeathLogic: MonoBehaviour
             //other.gameObject.transform.position = graveyard.position;
             isHit = true;
             collisionVelocity = other.relativeVelocity.normalized * ragdollSpeed;
-            Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
-            this.GameObject().SetActive(false);
+            GameObject ragdoll = Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
+            gameObject.SetActive(false);
             playerForcefield.enabled = true;
             deathCounter++;
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
             sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
+            doTweenSend?.Invoke(ragdoll);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
     }
