@@ -22,8 +22,7 @@ public class ThrowSystem : MonoBehaviour
     public void ChargeThrow()
     {
         if(_throwVelocity < _maxThrowVelocity.value)
-            _throwVelocity += Time.fixedDeltaTime * _throwVelocityChargeMultiplayer.value;
-        
+            _throwVelocity += Time.deltaTime * _throwVelocityChargeMultiplayer.value;
     }
     public void ResetThrowVelocity()
     {

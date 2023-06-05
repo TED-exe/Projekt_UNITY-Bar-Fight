@@ -341,7 +341,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _animator
       value: 
-      objectReference: {fileID: 1353818872027218962}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096126328018980617, guid: 52fd9b615b7b8a048be7858232a586bf,
+        type: 3}
+      propertyPath: _playerMovement
+      value: 
+      objectReference: {fileID: 6903656088451455993}
     - target: {fileID: 2096126328018980617, guid: 52fd9b615b7b8a048be7858232a586bf,
         type: 3}
       propertyPath: _pickableLayer.m_Bits
@@ -454,26 +459,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2368495727654637547}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1353818872027218962
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18237476365033208}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 88bac2e81c2117749b3d866b73adf114, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2127247167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +475,27 @@ MonoBehaviour:
   endColor: {r: 0.5377358, g: 0.53012633, b: 0.53012633, a: 0}
   blinkSpeed: 5
   forceFieldTime: 2
+--- !u!114 &6903656088451455993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18237476365033208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258d3207fa9fbe1468c97dc0ce37ada5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cc: {fileID: 323485556114790017}
+  so_playerSpeed: {fileID: 11400000, guid: 0b2da762ada55ba4496a136ea0e31f0b, type: 2}
+  so_rotateSpeed: {fileID: 11400000, guid: 2175f4ca01d006b41b6cef50a73ede31, type: 2}
+--- !u!143 &323485556114790017 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: -6583182698627229334, guid: 52fd9b615b7b8a048be7858232a586bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2368495727654637547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8459265503926930766
 PrefabInstance:
   m_ObjectHideFlags: 0

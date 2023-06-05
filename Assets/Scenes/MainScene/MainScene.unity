@@ -1521,6 +1521,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 872747077}
     m_Modifications:
+    - target: {fileID: -1251165095368576670, guid: 87a0d5836b93d3047b968f23dc2ff183,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1251165095368576670, guid: 87a0d5836b93d3047b968f23dc2ff183,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1251165095368576670, guid: 87a0d5836b93d3047b968f23dc2ff183,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1981893574648189294, guid: 87a0d5836b93d3047b968f23dc2ff183,
         type: 3}
       propertyPath: m_RootOrder
@@ -2758,7 +2773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567708803}
   m_LocalRotation: {x: 0.0047411225, y: -0.70454997, z: 0.0047072284, w: 0.70962304}
-  m_LocalPosition: {x: 2.720781, y: 21.51, z: -11.4}
+  m_LocalPosition: {x: 2.720781, y: 14.9, z: -15.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7854,7 +7869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549048106}
   m_LocalRotation: {x: 0.0047411225, y: -0.70454997, z: 0.0047072284, w: 0.70962304}
-  m_LocalPosition: {x: 2.720781, y: 21.51, z: -11.4}
+  m_LocalPosition: {x: 2.720781, y: 14.9, z: -15.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

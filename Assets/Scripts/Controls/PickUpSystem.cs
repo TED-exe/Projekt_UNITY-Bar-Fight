@@ -12,9 +12,11 @@ public class PickUpSystem : MonoBehaviour
 
     [HideInInspector] public bool _pickUp;
     [HideInInspector]public Rigidbody _objectInHandRb;
+    [HideInInspector] public GameObject _OutlineGameobjectMagazine;
 
     private PickUpObject _object;
     private GameObject _outlinedGameobject;
+    
     private void Awake()
     {
         _pickUp = false;
@@ -50,9 +52,7 @@ public class PickUpSystem : MonoBehaviour
     public void Drop()
     {
         if (_objectInHand == null)
-        {
             return;
-        }
         _objectInHand.transform.SetParent(null);
         _objectInHandRb.isKinematic = false;
 
@@ -67,15 +67,23 @@ public class PickUpSystem : MonoBehaviour
         if(_hit.collider.gameObject.layer == 3)
         {
             _outlinedGameobject = _hit.collider.gameObject;
-            _outlinedGameobject.AddComponent<Outline>();
+            _OutlineGameobjectMagazine = _outlinedGameobject;
+            _outlinedGameobject.GetComponent<Outline>().enabled = true;
         }
     }
     public void RemoveOutlineObject()
     {
         if (_outlinedGameobject == null)
             return;
-        Destroy(_outlinedGameobject.GetComponent<Outline>());
-        _outlinedGameobject = null;
+        else
+        {
+            _outlinedGameobject.GetComponent<Outline>().enabled = false;
+            _outlinedGameobject = null;
+        }
+    }
+    public void CleanOutlineMagazine()
+    {
+        _OutlineGameobjectMagazine = null;
     }
     IEnumerator WaitToPickUp()
     {
