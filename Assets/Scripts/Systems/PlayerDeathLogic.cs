@@ -12,7 +12,7 @@ public class PlayerDeathLogic: MonoBehaviour
     public bool isHit = false;
     public Vector3 collisionVelocity;
 
-    public delegate void sendToUI(GameObject player, int deaths);
+    public delegate void sendToUI(GameObject player);
     public static sendToUI sendUI;
     
     public delegate void Hit();
@@ -53,7 +53,7 @@ public class PlayerDeathLogic: MonoBehaviour
             deathCounter++;
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
-            sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
+            sendUI?.Invoke(this.gameObject.transform.parent.gameObject);
             doTweenSend?.Invoke(ragdoll);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }

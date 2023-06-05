@@ -31,6 +31,7 @@ public class GameMenager : MonoBehaviour
         {
             Debug.Log("true");
             playerInput.SwitchCurrentControlScheme(Gamepad.all[PlayersList.IndexOf(playerInput.gameObject)]);
+
         }
         else
         {
