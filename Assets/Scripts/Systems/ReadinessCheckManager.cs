@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -18,9 +17,8 @@ public class ReadinessCheckManager : MonoBehaviour
     [SerializeField] private SO_IntValue readyControllersCounter;
     [SerializeField] private TMP_Text controllerWarning;
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
-    private const string MainScenToLoad = "ted";
-    private const string UiSceneToLoad = "tedUi";
-    private int readyCount = 0;
+    private const string MainScenToLoad = "MainScene";
+    private const string UiSceneToLoad = "MainUI";
     public InputAction readyAction;
     public InputAction startAction;
     private Dictionary<int, bool> readyControllers = new Dictionary<int, bool>();

@@ -94,7 +94,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.63
+  m_Radius: 1
   m_Center: {x: 0, y: 0.3685345, z: 0}
 --- !u!114 &-6376873060974841134
 MonoBehaviour:
@@ -108,30 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56650044ed631f4abf8549312e6f853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glassBreakingSounds:
-  - {fileID: 8300000, guid: 53da6e274f14a4e4da239f0c3a207f84, type: 3}
-  - {fileID: 8300000, guid: 8608726c690cc3c428e43ddb029ae3b5, type: 3}
-  - {fileID: 8300000, guid: 3822d200be71ac7419b98ffd7f04c211, type: 3}
-  - {fileID: 8300000, guid: 93d7a60c9d294e94ca737bef324768e3, type: 3}
-  - {fileID: 8300000, guid: 75aded2b58bf27a4284b96189cd2bc47, type: 3}
-  _soundsSource: {fileID: -6236763606123835553}
-  _soundsVolumMultiplayer: 0.15
-  _soundsPitchMultiplayer: 0.2
   onPlayerHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6376873060974841134}
-        m_TargetAssemblyTypeName: ObjectCollision, Assembly-CSharp
-        m_MethodName: RandomizeGlassBreakingSounds
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: -4545577376838532360}
         m_TargetAssemblyTypeName: ObjectFracture, Assembly-CSharp
         m_MethodName: FractureObject
