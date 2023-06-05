@@ -1,9 +1,7 @@
 using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 
 public class GameMenager : MonoBehaviour
 {
@@ -13,40 +11,32 @@ public class GameMenager : MonoBehaviour
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
     [SerializeField] private PlayerInputManager _playerInputManager;
     [SerializeField] private CinemachineTargetGroup _cinemaMachine;
+    [SerializeField] private Transform _cameraHolderTransform;
 
+    [SerializeField] private List<GameObject> PlayersList = new List<GameObject>();
     private int i = 1;
 
     private void Awake()
     {
         _playerInputManager.playerPrefab = go_playerPrefab;
-        for(var i =0; i < so_playerCount.Value; i++)
+        for (var i = 0; i < so_playerCount.Value; i++)
         {
-            if (so_playerControllSchema[i].value == "Gamepad")
-            {
-              _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
-              // _playerInputManager.JoinPlayer();
-              // newGameobject.name = "Player" + i.ToString();
-            }
-
-            else if(so_playerControllSchema[i].value == "Keyboard&Mouse")
-            {
-                _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i], Keyboard.current, Mouse.current);
-                //_playerInputManager.JoinPlayer();
-                //newGameobject.name = "Player" + i.ToString();
-            }
+            if (_playerInputManager)
+                _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
         }
-        li_playerSpawnPosition.Clear();
     }
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        if(li_playerSpawnPosition.Count >0)
+        if(PlayersList.Count == so_playerCount.Value)
+            playerInput.SwitchCurrentControlScheme(Gamepad.all[PlayersList.IndexOf(playerInput.gameObject)]);
+        else
         {
+            PlayersList.Add(playerInput.gameObject);
             var randomSpawnPlace = Random.Range(0, li_playerSpawnPosition.Count);
             playerInput.transform.position = li_playerSpawnPosition[randomSpawnPlace].position;
+            playerInput.gameObject.transform.parent.gameObject.name = "Player" + PlayersList.IndexOf(playerInput.gameObject);
             li_playerSpawnPosition.RemoveAt(randomSpawnPlace);
-            playerInput.gameObject.transform.parent.gameObject.name = "Player" + i.ToString();
-            _cinemaMachine.AddMember(playerInput.gameObject.transform,1f,1f);
-            i++;
+            _cinemaMachine.AddMember(playerInput.gameObject.transform, 1f, 3.5f);
         }
     }
 }

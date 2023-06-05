@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpSystem : MonoBehaviour
@@ -12,9 +10,11 @@ public class PickUpSystem : MonoBehaviour
 
     [HideInInspector] public bool _pickUp;
     [HideInInspector]public Rigidbody _objectInHandRb;
+    [HideInInspector] public GameObject _OutlineGameobjectMagazine;
 
     private PickUpObject _object;
     private GameObject _outlinedGameobject;
+    
     private void Awake()
     {
         _pickUp = false;
@@ -29,7 +29,10 @@ public class PickUpSystem : MonoBehaviour
     }
     public void PickUp(RaycastHit _hit)
     {
-        _object = _hit.transform.GetComponent<PickUpObject>();
+        if (_hit.collider.gameObject.layer != 3)
+            return;
+        else
+            _object = _hit.transform.GetComponent<PickUpObject>();
         if (!_object.enabled)
             return;
         
@@ -46,6 +49,8 @@ public class PickUpSystem : MonoBehaviour
     }
     public void Drop()
     {
+        if (_objectInHand == null)
+            return;
         _objectInHand.transform.SetParent(null);
         _objectInHandRb.isKinematic = false;
 
@@ -53,18 +58,30 @@ public class PickUpSystem : MonoBehaviour
         _objectInHandRb = null;
         _objectInHand = null;
         _object.enabled = true;
+
     }
     public void OutlineObject(RaycastHit _hit)
     {
-        _outlinedGameobject = _hit.collider.gameObject;
-        _outlinedGameobject.AddComponent<Outline>();
+        if(_hit.collider.gameObject.layer == 3)
+        {
+            _outlinedGameobject = _hit.collider.gameObject;
+            _OutlineGameobjectMagazine = _outlinedGameobject;
+            _outlinedGameobject.GetComponent<Outline>().enabled = true;
+        }
     }
     public void RemoveOutlineObject()
     {
         if (_outlinedGameobject == null)
             return;
-        Destroy(_outlinedGameobject.GetComponent<Outline>());
-        _outlinedGameobject = null;
+        else
+        {
+            _outlinedGameobject.GetComponent<Outline>().enabled = false;
+            _outlinedGameobject = null;
+        }
+    }
+    public void CleanOutlineMagazine()
+    {
+        _OutlineGameobjectMagazine = null;
     }
     IEnumerator WaitToPickUp()
     {

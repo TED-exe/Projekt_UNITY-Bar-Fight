@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d712c00d2a67bba46b07aafd9a396188, type: 3}
   m_Name: SO_ThrowVelocityChargeMultiplayer
   m_EditorClassIdentifier: 
-  value: 0.5
+  value: 5

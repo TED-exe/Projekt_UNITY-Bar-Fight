@@ -1,25 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerDeathLogic: MonoBehaviour
 {
+    public bool isRespawned = false;
     private const int THROWED_LAYER = 7;
-    [SerializeField] private Transform graveyard;
     [SerializeField] private float ragdollSpeed = 10f;
     private PlayerForcefield playerForcefield;
-    private ThrowSystem throwSystem;
 
     [SerializeField] private int deathCounter;
     public bool isHit = false;
     public Vector3 collisionVelocity;
 
-    public delegate void sendToUI(GameObject player, int deaths);
+    public delegate void sendToUI(GameObject player);
     public static sendToUI sendUI;
     
     public delegate void Hit();
@@ -28,6 +21,9 @@ public class PlayerDeathLogic: MonoBehaviour
     public delegate void ragdoll(Vector3 objectVelocity);
     public static ragdoll sendToRagdoll;    
     
+    public delegate void sendDoTween(GameObject player);
+    public static sendDoTween doTweenSend;  
+    
     [SerializeField] private SO_Ragdoll playerRagdoll;
 
 
@@ -35,11 +31,11 @@ public class PlayerDeathLogic: MonoBehaviour
     {
         PlayerSpawnManager.OnSpawned += SpawnPlayer;
         playerForcefield = GetComponent<PlayerForcefield>();
-        throwSystem = GetComponent<ThrowSystem>();
     }
 
     public void SpawnPlayer(GameObject spawnPoint)
     {
+        isRespawned = true;
         var playerTransform = this.GameObject().transform;
         playerTransform.position = spawnPoint.transform.position + new Vector3(0, 1, 0);
     }
@@ -49,16 +45,16 @@ public class PlayerDeathLogic: MonoBehaviour
         if (other.gameObject.layer == THROWED_LAYER && !playerForcefield.isActiveAndEnabled)
         {
             if (isHit) return;
-            //other.gameObject.transform.position = graveyard.position;
             isHit = true;
             collisionVelocity = other.relativeVelocity.normalized * ragdollSpeed;
-            Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
-            this.GameObject().SetActive(false);
+            GameObject ragdoll = Instantiate(playerRagdoll.prefabRagdoll, transform.position, transform.rotation);
+            gameObject.SetActive(false);
             playerForcefield.enabled = true;
             deathCounter++;
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
-            sendUI?.Invoke(this.gameObject.transform.parent.gameObject, deathCounter);
+            sendUI?.Invoke(this.gameObject.transform.parent.gameObject);
+            doTweenSend?.Invoke(ragdoll);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }
     }

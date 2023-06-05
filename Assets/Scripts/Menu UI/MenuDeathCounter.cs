@@ -9,10 +9,12 @@ public class MenuDeathCounter : MonoBehaviour
     [SerializeField] private TMP_Text playerTwoText;
     [SerializeField] private TMP_Text endGameText;
 
-    private int firstPlayerDeaths;
-    private int secondPlayerDeaths;
 
-    private const string PLAYER_ONE_NAME = "PlayerHolder";
+
+    private int firstPlayerDeaths = 0;
+    private int secondPlayerDeaths = 0;
+
+    private const string PLAYER_ONE_NAME = "Player0";
 
     private void OnEnable()
     {
@@ -24,7 +26,7 @@ public class MenuDeathCounter : MonoBehaviour
         PlayerDeathLogic.sendUI -= ChangeText;
     }
 
-    private void ChangeText(GameObject player, int deaths)
+    private void ChangeText(GameObject player)
     {
         if (player is null)
         {
@@ -34,13 +36,15 @@ public class MenuDeathCounter : MonoBehaviour
         Debug.Log(player.name);
         if (player.name == PLAYER_ONE_NAME)
         {
+            Debug.Log(player.name + " 1");
             firstPlayerDeaths++;
-            playerOneText.text = "Player 1 Deaths:\n" + deaths;
+            playerOneText.text = "Player 2 Kills:\n" + firstPlayerDeaths;
         }
         else
         {
+            Debug.Log(player.name + " 2");
             secondPlayerDeaths++;
-            playerTwoText.text = "Player 2 Death:\n" + deaths;
+            playerTwoText.text = "Player 1 Kills:\n" + secondPlayerDeaths;
         }
     }
 
