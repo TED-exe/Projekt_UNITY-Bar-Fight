@@ -14,7 +14,6 @@ public class ObjectSpawnManager : MonoBehaviour
     public void GetRandomSpawner()
     {
         var randomSpawner = objectSpawners.OrderBy(_ => Guid.NewGuid()).First();
-        Debug.Log(randomSpawner);
         randomSpawner.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
