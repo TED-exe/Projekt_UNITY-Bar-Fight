@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1946,7 +1946,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f9fe43bee82bd2846a1218962ff78029, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.012
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4034,8 +4034,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: VaseWhole
       objectReference: {fileID: 0}
+    - target: {fileID: 7683136681036067538, guid: 87a0d5836b93d3047b968f23dc2ff183,
+        type: 3}
+      propertyPath: onPlayerHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 714872773}
+    - target: {fileID: 7683136681036067538, guid: 87a0d5836b93d3047b968f23dc2ff183,
+        type: 3}
+      propertyPath: onPlayerHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a0d5836b93d3047b968f23dc2ff183, type: 3}
+--- !u!1 &714872773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2174106234479786379, guid: 87a0d5836b93d3047b968f23dc2ff183,
+    type: 3}
+  m_PrefabInstance: {fileID: 714872772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &739106749
 PrefabInstance:
   m_ObjectHideFlags: 0

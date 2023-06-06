@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,7 +254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8e47ab3c23662cc49bced73331d07d4c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.095
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 1819867065}
   - component: {fileID: 1819867064}
   - component: {fileID: 1819867067}
+  - component: {fileID: 1819867068}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -870,6 +871,15 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!45 &1819867068
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819867063}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 9be07a6937ffd6f4c96c6daa9c030b31, type: 2}
 --- !u!1 &1843445903
 GameObject:
   m_ObjectHideFlags: 0
