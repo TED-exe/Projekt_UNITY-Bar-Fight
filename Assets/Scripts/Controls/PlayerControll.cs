@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerControll : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private PlayerInput _input;
+    [SerializeField] public PlayerInput _input;
     [SerializeField] private PickUpSystem _pickUpSystem;
     [SerializeField] private ThrowSystem _throwSystem;
 

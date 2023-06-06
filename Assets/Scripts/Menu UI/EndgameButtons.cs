@@ -8,15 +8,15 @@ public class EndgameButtons : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
-   
+
+    private const string MainScenToLoad = "MainPlayerMenu";
     public void OnRestartClicked()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(MainScenToLoad);
     }
 
     public void OnExitClicked()
     {
-        Debug.Log("Wy³¹czono gre");
         Application.Quit();
     }
 }

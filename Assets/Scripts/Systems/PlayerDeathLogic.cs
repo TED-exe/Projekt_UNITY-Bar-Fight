@@ -53,7 +53,7 @@ public class PlayerDeathLogic: MonoBehaviour
             deathCounter++;
             OnHit?.Invoke();
             sendToRagdoll?.Invoke(collisionVelocity);
-            sendUI?.Invoke(this.gameObject.transform.parent.gameObject);
+            //sendUI?.Invoke(this.gameObject.transform.parent.gameObject);
             doTweenSend?.Invoke(ragdoll);
             GetComponentInParent<RespawnPlayer>().StartSpawning();
         }

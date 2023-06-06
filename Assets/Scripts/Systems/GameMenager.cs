@@ -1,4 +1,4 @@
-using Cinemachine;
+﻿using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,55 +7,52 @@ public class GameMenager : MonoBehaviour
 {
     [SerializeField] private SO_IntValue so_playerCount;
     [SerializeField] private List<Transform> li_allSpawnPoint = new List<Transform>();
-    [SerializeField] private List<GameObject> PlayersList = new List<GameObject>();
+    [SerializeField] private List<GameObject> li_playersList = new List<GameObject>();
     [SerializeField] private GameObject go_playerPrefab;
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
     [SerializeField] private PlayerInputManager _playerInputManager;
     [SerializeField] private CinemachineTargetGroup _cinemaMachine;
-    [SerializeField] private Transform _cameraHolderTransform;
 
     [SerializeField] private List<Transform> li_availableSpawnPoints = new List<Transform>();
     private int i = 1;
 
-    private void Awake()
+    private void Start()
     {
         ResetSpawnPoint();
         _playerInputManager.playerPrefab = go_playerPrefab;
         for (var i = 0; i < so_playerCount.Value; i++)
         {
             if (_playerInputManager)
-                _playerInputManager.JoinPlayer(i, -1, so_playerControllSchema[i].value, Gamepad.all[i]);
+            {
+                var gameobject = Instantiate(go_playerPrefab,SetPlayerPosition().position,SetPlayerPosition().rotation,null);
+                li_playersList.Add(gameobject);
+                _cinemaMachine.AddMember(gameobject.transform.GetChild(0), 1f, 3.5f);
+                gameobject.name = "PLAYER" + li_playersList.IndexOf(gameobject);
+                gameobject.GetComponentInChildren<PlayerInput>().SwitchCurrentControlScheme("Gamepad", Gamepad.all[i]);
+            }
         }
+
     }
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        if(PlayersList.Count == so_playerCount.Value)
+        if(li_playersList.Count == so_playerCount.Value)
         {
-            playerInput.SwitchCurrentControlScheme(Gamepad.all[PlayersList.IndexOf(playerInput.gameObject)]);
-            SetPlayerPosition(playerInput.gameObject.transform);
-            return;
-        }
-        else
-        {
-            PlayersList.Add(playerInput.gameObject);
-            SetPlayerPosition(playerInput.gameObject.transform);
-            playerInput.gameObject.transform.parent.gameObject.name = "Player" + PlayersList.IndexOf(playerInput.gameObject);
-            _cinemaMachine.AddMember(playerInput.gameObject.transform, 1f, 3.5f);
+            playerInput.SwitchCurrentControlScheme(Gamepad.all[li_playersList.IndexOf(playerInput.transform.parent.gameObject)]);
             return;
         }
     }
 
-    private void SetPlayerPosition(Transform player)
+    private Transform SetPlayerPosition()
     {
         if (li_availableSpawnPoints.Count == 0)
         {
             ResetSpawnPoint();
-            return;
+            return SetPlayerPosition();
         }
         int randomIndex = Random.Range(0, li_availableSpawnPoints.Count);
         Transform spawnPoint = li_availableSpawnPoints[randomIndex];
-        player.position = spawnPoint.position;
         li_availableSpawnPoints.RemoveAt(randomIndex);
+        return spawnPoint;
     }
     private void ResetSpawnPoint()
     {

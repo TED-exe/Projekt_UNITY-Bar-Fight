@@ -331,6 +331,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3822732939788443591}
     m_Modifications:
+    - target: {fileID: -6583182698627229334, guid: 52fd9b615b7b8a048be7858232a586bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1962280877096710095, guid: 52fd9b615b7b8a048be7858232a586bf,
         type: 3}
       propertyPath: playerRagdoll
@@ -412,6 +417,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2350417982065529116, guid: 52fd9b615b7b8a048be7858232a586bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5409361892827793022, guid: 52fd9b615b7b8a048be7858232a586bf,
         type: 3}
       propertyPath: _playerIcon
@@ -446,6 +456,7 @@ PrefabInstance:
     - {fileID: -1574627396880004237, guid: 52fd9b615b7b8a048be7858232a586bf, type: 3}
     - {fileID: 175611794280240720, guid: 52fd9b615b7b8a048be7858232a586bf, type: 3}
     - {fileID: 2916177797158916048, guid: 52fd9b615b7b8a048be7858232a586bf, type: 3}
+    - {fileID: 2350417982065529116, guid: 52fd9b615b7b8a048be7858232a586bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52fd9b615b7b8a048be7858232a586bf, type: 3}
 --- !u!4 &18237476365033202 stripped
 Transform:

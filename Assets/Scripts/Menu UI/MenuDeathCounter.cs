@@ -14,7 +14,7 @@ public class MenuDeathCounter : MonoBehaviour
     private int firstPlayerDeaths = 0;
     private int secondPlayerDeaths = 0;
 
-    private const string PLAYER_ONE_NAME = "Player0";
+    private const string PLAYER_ONE_NAME = "PLAYER0";
 
     private void OnEnable()
     {
@@ -33,16 +33,13 @@ public class MenuDeathCounter : MonoBehaviour
             return;
         }
 
-        Debug.Log(player.name);
         if (player.name == PLAYER_ONE_NAME)
         {
-            Debug.Log(player.name + " 1");
             firstPlayerDeaths++;
             playerOneText.text = "Player 2 Kills:\n" + firstPlayerDeaths;
         }
         else
         {
-            Debug.Log(player.name + " 2");
             secondPlayerDeaths++;
             playerTwoText.text = "Player 1 Kills:\n" + secondPlayerDeaths;
         }

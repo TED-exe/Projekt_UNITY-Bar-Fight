@@ -18,7 +18,6 @@ public class ReadinessCheckManager : MonoBehaviour
     [SerializeField] private TMP_Text controllerWarning;
     [SerializeField] SO_DeviceScheme[] so_playerControllSchema;
     private const string MainScenToLoad = "MainScene";
-    private const string UiSceneToLoad = "MainUI";
     public InputAction readyAction;
     public InputAction startAction;
     private Dictionary<int, bool> readyControllers = new Dictionary<int, bool>();
@@ -42,7 +41,6 @@ public class ReadinessCheckManager : MonoBehaviour
         if (readyControllersCounter.Value == 2)
         {
             SceneManager.LoadScene(MainScenToLoad,LoadSceneMode.Single);
-            SceneManager.LoadScene(UiSceneToLoad,LoadSceneMode.Additive);
         }
     }
 

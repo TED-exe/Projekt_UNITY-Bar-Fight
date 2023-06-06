@@ -9,16 +9,15 @@ public class MenuButtons : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button endButton;
 
-    [SerializeField] private int sceneToLoad;
+    private const string MainScenToLoad = "MainPlayerMenu";
 
     public void OnStartClicked()
     {
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(MainScenToLoad);
     }
 
     public void OnEndClicked()
     {
-        Debug.Log("Wstaje wychodze");
         Application.Quit();
     }
 }
