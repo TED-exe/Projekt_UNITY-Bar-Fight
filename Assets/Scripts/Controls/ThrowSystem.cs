@@ -8,15 +8,11 @@ public class ThrowSystem : MonoBehaviour
     [SerializeField] private SO_FloatValue _maxThrowVelocity, _throwVelocityChargeMultiplayer, _rotateMultiplayer,_upThrowVelocity;
     [SerializeField] private PickUpSystem _pickUpSystem;
     [SerializeField] private Image _throwChargeImage, _throwChargeBackgroundImage,_playerImage;
-    [SerializeField] private Transform _canvasTransform, _cameraTransform;
+    [SerializeField] private Transform _canvasTransform;
 
     private const int THROWED_LAYER_NUMBER = 7;
     public float _throwVelocity ;
 
-    public void SetCameraTransform(Transform transform)
-    {
-        _cameraTransform = transform;
-    }
     public void ChargeThrow()
     {
         if(_throwVelocity < _maxThrowVelocity.value)
@@ -59,10 +55,4 @@ public class ThrowSystem : MonoBehaviour
             _throwChargeBackgroundImage.enabled = false;
         }
     }
-    private void LateUpdate()
-    {
-        _canvasTransform.LookAt(_cameraTransform);
-        _playerImage.transform.LookAt(_cameraTransform);
-    }
-
 }

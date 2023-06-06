@@ -21,7 +21,6 @@ public class RespawnChildren : MonoBehaviour
 
     private void SpawnRandomPrefab()
     {
-        Debug.Log("ty kurwo jebana");
         var randomObject = objectToSpawn.OrderBy(_ => Guid.NewGuid()).First();
         var instance = Instantiate(randomObject.prefabWhole, transform.position, quaternion.identity);
         instance.GameObject().transform.parent = gameObject.transform;
